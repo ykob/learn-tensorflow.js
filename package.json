@@ -52,6 +52,7 @@
     "yargs": "^11.0.0"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^0.10.3",
     "easing-js": "git://github.com/danro/easing-js.git",
     "js-util": "git://github.com/ykob/js-util.git",
     "jstransformer-markdown-it": "^2.0.0",
