@@ -10,10 +10,8 @@ html(lang="ja")
   body
     .l-page(data-page-id=page.id)
       include ./_gh.pug
-      block contentFixedBefore
       .l-contents
-        block contentStatic
-      block contentFixedAfter
+        block content
       include ./_gf.pug
     block script
     script(src=data.meta.path + "/js/main.js" async)
