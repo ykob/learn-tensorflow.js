@@ -2,20 +2,20 @@ import * as tf from '@tensorflow/tfjs';
 
 export default function() {
   // Getting Start
-  const model = tf.sequential();
-  model.add(tf.layers.dense({
-    units: 1,
-    inputShape: [1],
-  }));
-  model.compile({
-    loss: 'meanSquaredError',
-    optimizer: 'sgd',
-  });
-  const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-  const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
-  model.fit(xs, ys).then(() => {
-    model.predict(tf.tensor2d([5], [1, 1])).print();
-  });
+  // const model = tf.sequential();
+  // model.add(tf.layers.dense({
+  //   units: 1,
+  //   inputShape: [1],
+  // }));
+  // model.compile({
+  //   loss: 'meanSquaredError',
+  //   optimizer: 'sgd',
+  // });
+  // const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+  // const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+  // model.fit(xs, ys).then(() => {
+  //   model.predict(tf.tensor2d([5], [1, 1])).print();
+  // });
 
   // Core Concepts in TensorFlow.js
   const shape = [2, 3]; // 2 rows, 3 columns
@@ -50,4 +50,38 @@ export default function() {
 
   const sqSum = e.add(f).square();
   sqSum.print();
+
+  const predict = (a, b, c, input) => {
+    return tf.tidy(() => {
+      const x = tf.scalar(input);
+      const ax2 = a.mul(x.square());
+      const bx = b.mul(x);
+      return ax2.add(bx).add(c);
+    });
+  }
+  const result = predict(
+    tf.scalar(2),
+    tf.scalar(4),
+    tf.scalar(8),
+    2
+  );
+  result.print();
+
+  const model = tf.sequential();
+  model.add(
+    tf.layers.simpleRNN({
+      units: 20,
+      recurrentInitializer: 'GlorotNormal',
+      inputShape: [80, 4],
+    })
+  );
+  const optimizer = tf.train.sgd(LEARNING_RATE);
+  model.compile({
+    optimizer,
+    loss: 'categoricalCrossentropy'
+  });
+  model.fit({
+    x: data,
+    y: layers
+  });
 };
