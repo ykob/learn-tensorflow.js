@@ -38,4 +38,16 @@ export default function() {
   const updateVals = tf.tensor1d([0, 1, 0, 1, 0]);
   biases.assign(updateVals);
   biases.print();
+
+  const d = tf.tensor2d([[1, 2], [3, 4]]);
+  const dSquared = d.square();
+  dSquared.print();
+
+  const e = tf.tensor2d([[1, 2], [3, 4]]);
+  const f = tf.tensor2d([[4, 6], [7, 8]]);
+  const ePlusF = e.add(f);
+  ePlusF.print();
+
+  const sqSum = e.add(f).square();
+  sqSum.print();
 };
