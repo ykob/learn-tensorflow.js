@@ -7,9 +7,8 @@ const link = document.querySelector('link[as=style]');
 const init = () => {
   require ('./init/common.js').default();
   switch (pageId) {
-    case 'index':
-      require ('./init/index.js').default();
-      break;
+    case 'index': require ('./init/index.js').default(); break;
+    case 'page001': require ('./init/001.js').default(); break;
     default:
   }
 }
