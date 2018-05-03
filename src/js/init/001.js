@@ -14,4 +14,20 @@ export default function() {
         .add(d)
     });
   };
+
+  const loss = (predictions, labels) => {
+    return predictions.sub(labels).square().mean();
+  };
+
+  const train = (xs, ys, numIterations = 75) => {
+    const learningRate = 0.5;
+    const optimizer = tf.train.sgd(lerningRate);
+
+    for (var i = 0; i < numIterations; i++) {
+      optimizer.minimize(() => {
+        const predsYs = predict(xs);
+        return loss(predsYs, ys);
+      });
+    }
+  }
 };
